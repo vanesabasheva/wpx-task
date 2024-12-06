@@ -199,16 +199,7 @@ export class FoodLogController {
         } catch (error) {
             internalError(res, error);
         }
-    }
-
-    static validateDate(res: ServerResponse, currentDate: Date, logDate: Date) {
-        if (isNaN(logDate.getTime()) || logDate > currentDate) {
-            res.writeHead(400, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ message: 'Invalid or future date is not allowed' }));
-            return;
-        }
-
-    }
+    }    
 
     static async doesPatientExist(patientId: number): Promise<boolean> {
         const [patientRows]: [Patient[], FieldPacket[]] = await pool.execute<Patient[]>(
