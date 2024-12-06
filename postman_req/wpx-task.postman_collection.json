@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "4eb21bfc-d263-429c-94ff-322b2937d475",
+		"name": "wpx-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27469801"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/food-items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZiOWI5ZTFiNTgxNDMyZDY5MThiZDEiLCJpYXQiOjE3Mjc3NjU0MDYsImV4cCI6MTczNTU0MTQwNn0.NDGWhoDdfCZYh8l7XNWd650Gq6aKSKxwjypfmQjdq-o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"apple\",\r\n    \"caloriesPer100g\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/food-items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"food-items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/patients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Test\",\r\n  \"lastName\": \"Five\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"patients"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "Test",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Three",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/food-items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZiOWI5ZTFiNTgxNDMyZDY5MThiZDEiLCJpYXQiOjE3Mjc3NjU0MDYsImV4cCI6MTczNTU0MTQwNn0.NDGWhoDdfCZYh8l7XNWd650Gq6aKSKxwjypfmQjdq-o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"tomato\",\r\n    \"caloriesPer100g\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/food-items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"food-items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/food-logs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY5MTEzMTk1NTFkM2U2MjQ3YjQ1MWIiLCJpYXQiOjE3Mjc1OTg4OTgsImV4cCI6MTczNTM3NDg5OH0.8k1-WnPyo-GEQ-IA84XHDmSXax3L_xm-8_06RFl9sB8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patientId\": 1,\r\n    \"foodItemId\": 1,\r\n    \"quantityG\": 540,\r\n    \"date\": \"10-10-2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/food-logs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"food-logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/food-items/2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmZiOWI5ZTFiNTgxNDMyZDY5MThiZDEiLCJpYXQiOjE3Mjc3NjU0MDYsImV4cCI6MTczNTU0MTQwNn0.NDGWhoDdfCZYh8l7XNWd650Gq6aKSKxwjypfmQjdq-o",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"tomato\",\r\n    \"caloriesPer100g\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/food-items/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"food-items",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/food-logs/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmY5MTEzMTk1NTFkM2U2MjQ3YjQ1MWIiLCJpYXQiOjE3Mjc1OTg4OTgsImV4cCI6MTczNTM3NDg5OH0.8k1-WnPyo-GEQ-IA84XHDmSXax3L_xm-8_06RFl9sB8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"patientId\": 3,\r\n    \"foodItemId\": 1,\r\n    \"quantityG\": 540,\r\n    \"date\": \"10-10-2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/food-logs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"food-logs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/food-logs/calories?patientId=1&date=2022-10-10",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/food-logs/calories?patientId=1&date=2022-10-10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"food-logs",
+						"calories"
+					],
+					"query": [
+						{
+							"key": "patientId",
+							"value": "1"
+						},
+						{
+							"key": "date",
+							"value": "2022-10-10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
