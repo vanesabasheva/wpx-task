@@ -2,10 +2,10 @@ import { IncomingMessage, ServerResponse } from 'http';
 import pool from '../util/database';
 import { parseBody, internalError, methodNotAllowed, notFound } from '../util/helpers';
 import { FieldPacket, ResultSetHeader } from 'mysql2';
+import { FoodItem } from '../models/FoodItem';
 
 export class FoodItemController {
     static async handle(req: IncomingMessage, res: ServerResponse) {
-        console.log("In FoodItemController");
         const method = req.method;
         const urlParts = req.url?.split('/') || [];
         const id = urlParts[2];
@@ -28,7 +28,7 @@ export class FoodItemController {
 
     static async createFoodItem(req: IncomingMessage, res: ServerResponse) {
         try {
-            const body = await parseBody(req);
+            const body = await parseBody<FoodItem>(req);
             const {name, caloriesPer100g} = body;
             if (!name || !caloriesPer100g) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });

@@ -5,6 +5,7 @@ import { FieldPacket, ResultSetHeader } from 'mysql2';
 import { Patient } from '../models/Patient';
 import { FoodItem } from '../models/FoodItem';
 import { ParsedUrlQuery } from 'querystring';
+import { FoodLog } from '../models/FoodLog';
 
 export class FoodLogController {
     static async handle(req: IncomingMessage, res: ServerResponse) {
@@ -38,7 +39,7 @@ export class FoodLogController {
 
     static async createFoodLog(req: IncomingMessage, res: ServerResponse) {
         try {
-            const body = await parseBody(req);
+            const body = await parseBody<FoodLog>(req);
             const { patientId, foodItemId, quantityG, date } = body;
 
             if (!patientId || !foodItemId || !quantityG || !date) {
@@ -56,16 +57,13 @@ export class FoodLogController {
                 return;
             }
 
-            // Check if patient exists
-            const [patientRows]: [Patient[], FieldPacket[]] = await pool.execute<Patient[]>(
-                'SELECT * FROM Patients WHERE id = ?', [patientId]);
-            if (patientRows.length === 0) {
+            const patientExists = await this.doesPatientExist(patientId);
+            if(!patientExists){
                 res.writeHead(400, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: 'Patient does not exist' }));
                 return;
             }
 
-            // Check if food item exists and is not deleted
             const [foodRows, fields]: [FoodItem[], FieldPacket[]] = await pool.execute<FoodItem[]>('SELECT * FROM FoodItems WHERE id = ? AND is_deleted = FALSE', [foodItemId]);
             if (foodRows.length === 0) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -81,7 +79,7 @@ export class FoodLogController {
             );
 
             res.writeHead(201, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ id: result.insertId, patientId, foodItemId, quantityG, utcDate }));
+            res.end(JSON.stringify({ id: result.insertId, patientId, foodItemId, quantityG, date: utcDate }));
         } catch (error) {
             internalError(res, error);
         }
@@ -105,7 +103,7 @@ export class FoodLogController {
     };
     static async updateFoodLog(id: string, req: IncomingMessage, res: ServerResponse) {
         try {
-            const body = await parseBody(req);
+            const body = await parseBody<FoodLog>(req);
             const { patientId, foodItemId, quantityG, date } = body;
 
             let query = 'UPDATE FoodLogs SET ';
@@ -177,6 +175,13 @@ export class FoodLogController {
             return;
         }
 
+        const patientExists = await this.doesPatientExist(+patientId);
+        if(!patientExists){
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Patient does not exist' }));
+            return;
+        }
+
         try {
             const [rows]: any = await pool.query(
                 `
@@ -203,6 +208,15 @@ export class FoodLogController {
             return;
         }
 
+    }
+
+    static async doesPatientExist(patientId: number): Promise<boolean> {
+        const [patientRows]: [Patient[], FieldPacket[]] = await pool.execute<Patient[]>(
+            'SELECT * FROM Patients WHERE id = ?', [patientId]);
+        if (patientRows.length === 0) {
+            return false;
+        } 
+        return true;
     }
 
 };

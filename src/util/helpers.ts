@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
-export const parseBody = (req: IncomingMessage): Promise<any> => {
+export const parseBody = <T = any>(req: IncomingMessage): Promise<T> => {
     return new Promise((resolve, reject) => {
         let body = '';
         req.on('data', chunk => {
@@ -8,7 +8,7 @@ export const parseBody = (req: IncomingMessage): Promise<any> => {
         });
         req.on('end', () => {
             try {
-                const parsed = JSON.parse(body);
+                const parsed: T = JSON.parse(body);
                 resolve(parsed);
             } catch (error) {
                 reject(error);

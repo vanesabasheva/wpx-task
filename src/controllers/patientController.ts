@@ -2,17 +2,17 @@ import { IncomingMessage, ServerResponse } from 'http';
 import pool from '../util/database';
 import { parseBody, internalError, methodNotAllowed } from '../util/helpers';
 import { FieldPacket, ResultSetHeader } from 'mysql2';
+import { Patient } from '../models/Patient';
 
 export class PatientController {
     static async handle(req: IncomingMessage, res: ServerResponse) {
-        console.log("In PatientController");
         const method = req.method;
 
         switch(method) {
             case 'POST': 
                 await this.createPatient(req,res);
                 break;
-                
+
             default:
                 methodNotAllowed(res);
         }
@@ -20,7 +20,7 @@ export class PatientController {
 
     static async createPatient(req: IncomingMessage, res: ServerResponse) {
         try {
-            const body = await parseBody(req);
+            const body = await parseBody<Patient>(req);
             const {firstName, lastName} = body;
     
             if (!firstName || !lastName) {
