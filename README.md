@@ -44,6 +44,7 @@ Patients
 POST /patients - Create a new patient
 
 Food Items
+
 POST /food-items - Create a new food item
 
 DELETE /food-items/:id - Soft delete a food item
