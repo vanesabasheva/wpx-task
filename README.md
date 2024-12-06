@@ -45,11 +45,15 @@ POST /patients - Create a new patient
 
 Food Items
 POST /food-items - Create a new food item
+
 DELETE /food-items/:id - Soft delete a food item
 
 Food Logs
 
 POST /food-logs - Create a new food log
+
 PUT /food-logs/:id - Update a food log
+
 DELETE /food-logs/:id - Delete a food log
+
 GET /food-logs/calories - Get consumed calories for a patient on a specific date
